@@ -1,0 +1,143 @@
+!
+! Last configuration change at 18:00:26 UTC Thu Jun 4 2020 by cisco
+upgrade fpd auto
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$uofJ$k0cCxK9UDX3kIEHf6.xOo0
+!
+aaa new-model
+!
+!
+aaa authentication login default local group radius
+aaa authorization exec default local group radius
+aaa accounting exec default start-stop group radius
+!
+!
+!
+!
+!
+aaa session-id common
+!
+ip source-route
+no ip icmp rate-limit unreachable
+ip cef
+!
+!
+!
+!
+!
+no ip domain lookup
+login block-for 600 attempts 3 within 60
+login on-failure log
+login on-success log
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+crypto pki token default removal timeout 0
+!
+!
+username cisco privilege 15 secret 5 $1$UPs4$V6I5ifqR5.48f4k99RN8X/
+username noc privilege 15 secret 5 $1$W.kc$bDkWGf.zzeIkWBNALxzKc0
+!
+redundancy
+!
+!
+ip tcp synwait-time 5
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.2.1 255.255.255.0
+ ip access-group f0/0_in in
+ ip access-group f0/0_out out
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ ip address 192.168.1.254 255.255.255.0
+ duplex auto
+ speed auto
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip route 0.0.0.0 0.0.0.0 FastEthernet0/0
+!
+ip access-list extended f0/0_in
+ evaluate trafego_tcp
+ evaluate trafego_udp
+ evaluate trafego_icmp
+ permit tcp any host 192.168.2.1 eq telnet
+ permit tcp any host 192.168.2.1 eq 22
+ deny   tcp any 192.168.1.0 0.0.0.255 eq www time-range FIM_DE_SEMANA
+ deny   ip any any
+ip access-list extended f0/0_out
+ deny   tcp 192.168.1.0 0.0.0.255 any eq www time-range FIM_DE_SEMANA
+ permit tcp any any reflect trafego_tcp timeout 300
+ permit udp any any reflect trafego_udp timeout 300
+ permit icmp any any reflect trafego_icmp timeout 300
+ deny   ip any any
+!
+logging 193.137.78.1
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+mgcp profile default
+!
+!
+!
+gatekeeper
+ shutdown
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ password cisco
+ logging synchronous
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ transport input all
+!
+time-range FIM_DE_SEMANA
+ periodic weekend 0:00 to 23:59
+!
+end
+

@@ -1,0 +1,270 @@
+autostart = False
+version = 0.8.5
+[127.0.0.1:7202]
+    workingdir = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Dynamips
+    udp = 10201
+    [[7200]]
+        image = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Images\uncompressed\c7200-advipservicesk9-mz.151-4.M2.bin
+        ram = 512
+        idlepc = 0x60608040
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R3]]
+        console = 2104
+        aux = 2503
+        cnfg = configs\R3.cfg
+        slot0 = C7200-IO-2FE
+        f0/0 = R1 f0/1
+        f0/1 = SW1 1
+        x = -36.0
+        y = -98.0
+        z = 1.0
+        hx = 69.5
+        hy = 8.0
+    [[ETHSW SW1]]
+        1 = access 1 R3 f0/1
+        2 = access 1 nio_gen_eth:\device\npf_{bec02d48-2dcb-42ad-9722-f0f2cc86c765}
+        3 = access 1 SRV f0/0
+        x = -47.5
+        y = 42.0
+        z = 1.0
+        hx = 51.0
+        hy = -24.0
+[127.0.0.1:7203]
+    workingdir = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Dynamips
+    udp = 10301
+    [[7200]]
+        image = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Images\uncompressed\c7200-advipservicesk9-mz.151-4.M2.bin
+        ram = 512
+        idlepc = 0x60608040
+        sparsemem = True
+        ghostios = True
+    [[ROUTER PC1]]
+        console = 2106
+        aux = 2505
+        cnfg = configs\PC1.cfg
+        slot0 = C7200-IO-2FE
+        f0/0 = R2 f0/1
+        x = -384.0
+        y = -236.0
+        z = 1.0
+[127.0.0.1:7200]
+    workingdir = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Dynamips
+    udp = 10001
+    [[7200]]
+        image = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Images\uncompressed\c7200-advipservicesk9-mz.151-4.M2.bin
+        ram = 512
+        idlepc = 0x60608040
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R1]]
+        console = 2101
+        aux = 2501
+        cnfg = configs\R1.cfg
+        slot0 = C7200-IO-2FE
+        f0/0 = R2 f0/0
+        f0/1 = R3 f0/0
+        slot1 = PA-4E
+        e1/0 = PC2 f0/0
+        x = -31.0
+        y = -262.0
+        z = 1.0
+[127.0.0.1:7201]
+    workingdir = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Dynamips
+    udp = 10101
+    [[7200]]
+        image = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Images\uncompressed\c7200-advipservicesk9-mz.151-4.M2.bin
+        ram = 512
+        idlepc = 0x60608040
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R2]]
+        console = 2102
+        aux = 2502
+        cnfg = configs\R2.cfg
+        slot0 = C7200-IO-2FE
+        f0/0 = R1 f0/0
+        f0/1 = PC1 f0/0
+        x = -224.0
+        y = -261.0
+        z = 1.0
+[127.0.0.1:7204]
+    workingdir = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Dynamips
+    udp = 10401
+    [[7200]]
+        image = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Images\uncompressed\c7200-advipservicesk9-mz.151-4.M2.bin
+        ram = 512
+        idlepc = 0x60608040
+        sparsemem = True
+        ghostios = True
+    [[ROUTER PC2]]
+        console = 2108
+        aux = 2506
+        cnfg = configs\PC2.cfg
+        slot0 = C7200-IO-2FE
+        f0/0 = R1 e1/0
+        x = 188.0
+        y = -252.0
+        z = 1.0
+[127.0.0.1:7205]
+    workingdir = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Dynamips
+    udp = 10501
+    [[7200]]
+        image = C:\Documents and Settings\Cisco\Desktop\Cisco\GNS3\Images\uncompressed\c7200-advipservicesk9-mz.151-4.M2.bin
+        ram = 512
+        idlepc = 0x60608040
+        sparsemem = True
+        ghostios = True
+    [[ROUTER SRV]]
+        console = 2109
+        aux = 2507
+        cnfg = configs\SRV.cfg
+        slot0 = C7200-IO-2FE
+        f0/0 = SW1 3
+        x = 69.0
+        y = 135.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    m11 = 1.41421356237
+    m22 = 1.41421356237
+    [[NOTE 1]]
+        text = ".254"
+        x = -37.0
+        y = -224.0
+    [[NOTE 2]]
+        text = ".1"
+        x = -33.0
+        y = -125.0
+    [[NOTE 3]]
+        text = ".2"
+        x = 68.0
+        y = 103.0
+    [[NOTE 4]]
+        text = ".1"
+        x = -322.0
+        y = -244.0
+    [[NOTE 5]]
+        text = ".254"
+        x = 30.0
+        y = -271.0
+    [[NOTE 6]]
+        text = ".8"
+        x = 171.0
+        y = -261.0
+    [[NOTE 7]]
+        text = ".1"
+        x = -160.0
+        y = 93.0
+    [[NOTE 8]]
+        text = "192.168.3.0/24"
+        x = -3.0
+        y = -159.0
+    [[NOTE 9]]
+        text = "8.8.8.0/24"
+        x = 72.0
+        y = -273.0
+    [[NOTE 10]]
+        text = "193.137.78.0/24"
+        x = 6.0
+        y = -15.0
+    [[NOTE 11]]
+        text = ".254"
+        x = -259.0
+        y = -265.0
+    [[NOTE 12]]
+        text = ".1"
+        x = -162.0
+        y = -265.0
+    [[NOTE 13]]
+        text = "192.168.1.0/24"
+        x = -342.0
+        y = -287.0
+    [[NOTE 14]]
+        text = "192.168.2.0/24"
+        x = -153.0
+        y = -285.0
+    [[NOTE 15]]
+        text = ".254"
+        x = -78.0
+        y = -263.0
+    [[NOTE 16]]
+        text = ".254"
+        x = -51.0
+        y = -58.0
+    [[NOTE 17]]
+        text = "3"
+        x = 65.7013247357
+        y = 42.2274662178
+        interface = SW1 3
+    [[NOTE 18]]
+        text = "1"
+        x = 38.1805280002
+        y = -23.9100835584
+        interface = SW1 1
+    [[NOTE 19]]
+        text = "2"
+        x = -4.16516744974
+        y = 21.164735345
+        interface = SW1 2
+    [[NOTE 20]]
+        text = "f0/0"
+        x = 2.79867526429
+        y = -4.22746621785
+        interface = SRV f0/0
+    [[NOTE 21]]
+        text = "f0/0"
+        x = 72.52048135
+        y = 15.8249247891
+        interface = PC1 f0/0
+    [[NOTE 22]]
+        text = "f0/0"
+        x = -6.95836454863
+        y = 20.1754171439
+        interface = PC2 f0/0
+    [[NOTE 23]]
+        text = "f0/1"
+        x = 30.3194719998
+        y = 61.9100835584
+        interface = R3 f0/1
+    [[NOTE 24]]
+        text = "f0/0"
+        x = 34.2189458178
+        y = -17.9814228248
+        interface = R3 f0/0
+    [[NOTE 25]]
+        text = "f0/1"
+        x = -6.52048135004
+        y = 28.1750752109
+        interface = R2 f0/1
+    [[NOTE 26]]
+        text = "f0/0"
+        x = 72.9994630836
+        y = 21.7927488959
+        interface = R2 f0/0
+    [[NOTE 27]]
+        text = "e1/0"
+        x = 72.9583645486
+        y = 23.8245828561
+        interface = R1 e1/0
+    [[NOTE 28]]
+        text = "f0/1"
+        x = 31.7810541822
+        y = 61.9814228248
+        interface = R1 f0/1
+    [[NOTE 29]]
+        text = "f0/0"
+        x = -6.99946308364
+        y = 22.2072511041
+        interface = R1 f0/0
+    [[NOTE 30]]
+        text = "nio_gen_eth:\device\npf_{bec02d48-2dcb-42ad-9722-f0f2cc86c765}"
+        x = 72.1651674497
+        y = 24.335264655
+        interface = XP nio_gen_eth:\device\npf_{bec02d48-2dcb-42ad-9722-f0f2cc86c765}
+    [[Cloud XP]]
+        symbol = Host
+        x = -236.5
+        y = 53.5
+        z = 1.0
+        connections = SW1:2:nio_gen_eth:\device\npf_{bec02d48-2dcb-42ad-9722-f0f2cc86c765}
